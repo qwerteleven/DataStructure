@@ -7,9 +7,6 @@ public class ContenedorDeEnteros {
         int entero;
         Nodo siguiente;
 
-        /**
-         * Constructor de los elementos de informacion
-         */
 
         public Nodo(int n) {
             entero=n;
@@ -19,9 +16,7 @@ public class ContenedorDeEnteros {
 
     private Nodo primero;
 
-    /**
-     * Constructor del Contenedor
-     */
+
     public ContenedorDeEnteros() {
         primero = null;
     }
@@ -39,9 +34,6 @@ public class ContenedorDeEnteros {
         return contador;
     }
 
-    /**
-     * Introduce un dato en la estructura de informacion
-     */
 
     public void insertar (int entero) {
         if (primero == null) {//inserta por delante
@@ -62,9 +54,7 @@ public class ContenedorDeEnteros {
         }
     }
 
-    /**
-     * Extrae de la estructura un dato
-     */
+
     public void extraer(int viejo) {
         if(primero != null) {
             if(primero.entero==viejo) {
@@ -83,10 +73,7 @@ public class ContenedorDeEnteros {
         }
     }
 
-    /**
-     * Busca dentro de la estructura si el dato esta
-     * @return Si ha encontrado el dato
-     */
+
     public boolean buscar(int look) {
         Nodo aux = primero;
         while(aux != null) {
@@ -99,17 +86,12 @@ public class ContenedorDeEnteros {
         return false;
     }
 
-    /**
-     * Disocia la estructura de datos del contenedor
-     */
+
     public void vaciar() {
         primero=null;
     }
 
-    /**
-     * Devuelva el contenido del contenedor
-     * @return Array ordenado de los datos
-     */
+
     public int[] elementos() {
         int [] res = new int [cardinal()];
         Nodo aux= primero;

@@ -24,14 +24,12 @@ public class PruebaContenedor {
             RandomAccessFile ficheroNo = new RandomAccessFile("datos_no.dat", "r");
             PrintStream salida = new PrintStream(new File("salida4.txt"));
 
-            //Añadimos a los vectores los datos de los fichero datos.dat y datos_no.dat
             for (int i = 0; i<100000; i++) {
                 datos[i] = fichero.readInt();
             }
             for (int i = 0; i<20000; i++) {
                 datosNo[i] = ficheroNo.readInt();
             }
-            //Cerramos los ficheros de lectura
             ficheroNo.close();
             fichero.close();
 
@@ -41,7 +39,6 @@ public class PruebaContenedor {
                 System.out.println("-> Orden " + ordene);
                 resultados = new StringBuilder();
 
-                //Primera prueba. Inserciones
                 System.out.println("Primera Prueba inserciones\r\ntiempo/1000");
 
                 for (int i = 0; i < 10; i++) {
@@ -56,7 +53,6 @@ public class PruebaContenedor {
                 salida.println("Orden: " + ordene + "Primera Prueba Inserciones\r\ntiempo/1000");
                 salida.println("\r\n" + resultados);
 
-                //Segunda prueba. Extracciones
                 resultados = new StringBuilder();
                 System.out.println("\r\n\r\nSegunda Prueba extracciones\r\ntiempo/1000");
 
@@ -74,7 +70,6 @@ public class PruebaContenedor {
                 salida.println("\r\n\r\nSegunda Prueba Extracciones\r\ntiempo/1000");
                 salida.println(resultados);
 
-                //Tercera prueba. Búsqueda exitosa
                 System.out.println("\r\n\r\nTercera Prueba búsquedas\r\ntiempo/1000");
                 resultados = new StringBuilder();
                 a.vaciar();
@@ -84,11 +79,9 @@ public class PruebaContenedor {
                         a.insertar(datos[j + (i * 10000)]);
                     }
                     startTime = System.currentTimeMillis();
-                    //for (int k = 0; k < 100; k++) {
                     for (int j = 0; j < 10000 * (i + 1); j++) {
                         a.buscar(datos[j]);
                     }
-                    //}
                     resultados.append("\r\n").append(formato1.format(((System.currentTimeMillis() - startTime)) / (10. * (i + 1))));
                 }
 
@@ -106,11 +99,9 @@ public class PruebaContenedor {
                         a.insertar(datos[j + (i * 10000)]);
                     }
                     startTime = System.currentTimeMillis();
-                    //for (int k = 0; k < 100; k++) {
                     for (int j = 0; j < 20000; j++) {
                         a.buscar(datosNo[j]);
                     }
-                    //}
                     resultados.append("\r\n").append(formato1.format(((System.currentTimeMillis() - startTime)) / 20.));
                 }
 

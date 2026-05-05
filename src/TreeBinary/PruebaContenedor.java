@@ -10,18 +10,15 @@ public class PruebaContenedor {
     public static void main(String[] args) {
 
 
-        //Iniciamos las pruebas de funcionamiento
         pruebaInsertar();
         pruebaExtraer();
         pruebaBuscar();
         pruebaCardinal();
         pruebaVaciar();
         pruebaElementos();
-        //Iniciamos las pruebas de rendimiento
         pruebas();
     }
 
-    //Pruebas de rendimiento
     public static void pruebas() {
         ContenedorDeEnteros a = new ContenedorDeEnteros();
         RandomAccessFile fichero;
@@ -34,12 +31,10 @@ public class PruebaContenedor {
         DecimalFormat formato1 = new DecimalFormat("#0.0000");
 
         try {
-            //Abrimos los ficheros
             fichero = new RandomAccessFile("datos.dat", "r");
             ficheroNo = new RandomAccessFile("datos_no.dat", "r");
             salida = new FileWriter("salida3.txt");
             salida.write("Práctica 3");
-            //Añadimos a los vectores los datos de los fichero datos.dat y datos_no.dat
 
             for (int i = 0; i < 100000; i++) {
                 datos[i] = fichero.readInt();
@@ -49,11 +44,9 @@ public class PruebaContenedor {
                 datosNo[i] = ficheroNo.readInt();
             }
 
-            //Cerramos los ficheros de lectura
             fichero.close();
             ficheroNo.close();
 
-            //Primera prueba. Inserciones
             System.out.println("Primera Prueba inserciones\r\ntiempo/1000");
 
             for (int i = 0; i < 10; i++) {
@@ -68,7 +61,6 @@ public class PruebaContenedor {
             salida.write("Primera Prueba Inserciones\r\ntiempo/1000");
             salida.write("\r\n" + resultados);
 
-            //Segunda prueba. Extracciones
             resultados = new StringBuilder();
             System.out.println("\r\n\r\nSegunda Prueba extracciones\r\ntiempo/1000");
 
@@ -86,7 +78,6 @@ public class PruebaContenedor {
             salida.write("\r\n\r\nSegunda Prueba Extracciones\r\ntiempo/1000");
             salida.write(resultados.toString());
 
-            //Tercera prueba. Búsqueda exitosa
             System.out.println("\r\n\r\nTercera Prueba búsquedas\r\ntiempo/1000");
             resultados = new StringBuilder();
             a.vaciar();
@@ -130,13 +121,12 @@ public class PruebaContenedor {
             salida.write("\r\n\r\nCuarta Prueba BusquedaInfructuosa\r\ntiempo/1000");
             salida.write(resultados.toString());
             salida.close();
-        } catch (IOException ex) { //control de exepciones para la E/S
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
 
-    //Pruebas de funcionamiento
     public static void pruebaInsertar() {
         ContenedorDeEnteros a = new ContenedorDeEnteros();
         if (a.cardinal() != 0) {

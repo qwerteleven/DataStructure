@@ -5,7 +5,6 @@ public class ContenedorDeEnteros {
     private int elemento;
     private Nodo arbol;
 
-    //referencias para en las operaciones disponer del nodo padre
     private Nodo padre;
     private Nodo hijo;
 
@@ -17,11 +16,7 @@ public class ContenedorDeEnteros {
         int info;
         Nodo[] hijos;
 
-        /**
-         * Contructor de los nodos
-         *
-         * @param info
-         */
+    
 
         Nodo (int info) {
             this.info = info;
@@ -29,38 +24,24 @@ public class ContenedorDeEnteros {
         }
     }
 
-    /**
-     * Constructor del Contenedor
-     */
+
 
     public ContenedorDeEnteros() {
         arbol = null;
     }
 
 
-    /**
-     * Devuelve el numero de elementos
-     *
-     * @return int
-     */
-
 
     public int cardinal() {
         return elemento;
     }
 
-    /**
-     * Intenta insertar un elemento en el contenedor
-     *
-     * @param valor
-     * @return Boolean
-     */
 
 
     public boolean insertar (int valor) {
         if (arbol == null) {
             arbol = new Nodo(valor);
-            elemento ++;//caso especial contenedor vacio
+            elemento ++;
             return true;
         }
 
@@ -91,20 +72,13 @@ public class ContenedorDeEnteros {
     }
 
 
-    /**
-     * Intenta extraer un elemento del contenedor
-     *
-     * @param valor
-     * @return Boolean
-     */
-
     public boolean extraer (int valor) {
         if (arbol == null) {
             return false;
         }
         if (arbol.info == valor) {
             eliminarRaiz();
-            elemento --;//tratamiento de la raiz
+            elemento --;
             return true;
         }
 
@@ -143,12 +117,6 @@ public class ContenedorDeEnteros {
         return true;
     }
 
-    /**
-     * Busca un elemento en el contenedor
-     *
-     * @param valor
-     * @return Boolean
-     */
 
 
     public boolean buscar (int valor) {
@@ -161,7 +129,7 @@ public class ContenedorDeEnteros {
         while (true) {
             if (aux.info < valor) {
                 if (aux.hijos[1] != null) {
-                    padre = aux;//guarda el penultimo nodo visitado
+                    padre = aux;
                     aux =  aux.hijos[1];
                     continue;
                 } else {
@@ -170,32 +138,25 @@ public class ContenedorDeEnteros {
             }
             if (aux.info > valor) {
                 if (aux.hijos[0] != null) {
-                    padre = aux;//guarda el penultimo nodo visitado
+                    padre = aux;
                     aux =  aux.hijos[0];
                     continue;
                 } else {
                     return false;
                 }
             }
-            hijo = aux;//guarda el nodo encontrado
+            hijo = aux;
             return true;
         }
     }
 
-    /**
-     * Vacia el contenedor
-     */
 
     public void vaciar () {
         arbol = null;
         elemento = 0;
     }
 
-    /**
-     * Devuelve la informacion, de forma ordenada, en un array
-     *
-     * @return int[]
-     */
+  
 
     public int [] elementos () {
         informacion = new int [elemento];
@@ -204,11 +165,7 @@ public class ContenedorDeEnteros {
         return informacion;
     }
 
-    /**
-     * Recorren en inOrden el contenedor
-     * @param raiz
-     */
-
+  
     private void inOrden (Nodo raiz) {
         if (raiz == null) return;
 
@@ -217,10 +174,7 @@ public class ContenedorDeEnteros {
         inOrden(raiz.hijos[1]);
     }
 
-    /**
-     * guarda un valor
-     * @param info
-     */
+  
 
     private void escribir (int info) {
         informacion[count] = info;
@@ -228,9 +182,7 @@ public class ContenedorDeEnteros {
     }
 
 
-    /**
-     * Tratamiento diferente de la raiz
-     */
+   
     private void eliminarRaiz() {
         if (arbol.hijos[0] ==  arbol.hijos[1]) {
             arbol = null;
@@ -247,10 +199,7 @@ public class ContenedorDeEnteros {
         simetrico(arbol);
     }
 
-    /**
-     * Realiza el tratamiento del simetrico
-     * @param raiz
-     */
+
     private void simetrico(Nodo raiz) {
         Nodo simetrico = raiz.hijos[1];
         Nodo padre = raiz;
